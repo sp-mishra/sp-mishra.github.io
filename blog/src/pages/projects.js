@@ -1,20 +1,17 @@
-import React from "react";
-import { graphql, Link } from "gatsby";
-import "bootstrap/dist/css/bootstrap.css";
-import "./index.css";
+import React from "react"
+import { graphql, Link } from "gatsby"
+import "bootstrap/dist/css/bootstrap.css"
+import "./index.css"
 
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import Sidebar from "../components/sidebar/Sidebar";
-import TechTag from "../components/tags/TechTag";
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import Sidebar from "../components/sidebar/Sidebar"
+import TechTag from "../components/tags/TechTag"
 
-const IndexPage = ({ data }) => {
+const ProjectsPage = ({ data }) => {
+  console.log(ProjectsPage.name, "\n data: ", data);
   const posts = data.allMarkdownRemark.edges;
   const labels = data.site.siteMetadata.labels;
-  const currentPage = 1;
-  const postsPerPage = 3; // see limit in graphql query below
-  const nextPage = (currentPage + 1).toString();
-  const hasNextPage = data.allMarkdownRemark.totalCount > postsPerPage;
 
   const getTechTags = (tags) => {
     const techTags = [];
@@ -32,12 +29,13 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Home" keywords={[`gatsby`, `javascript`, `react`, `web development`, `blog`, `graphql`]}/>
+      <SEO title="Projects" keywords={[`gatsby`, `javascript`, `react`, `web development`, `blog`, `graphql`]}/>
       <div className="index-main">
         <div className="sidebar px-4 py-2">
           <Sidebar/>
         </div>
         <div className="post-list-main">
+          <h2 className="heading mt-3">All Projects</h2>
           {posts.map((post) => {
             const tags = post.node.frontmatter.tags;
             return (
@@ -55,29 +53,22 @@ const IndexPage = ({ data }) => {
                   to={post.node.fields.slug}
                   className="text-primary"
                 >
-                  <small className="d-inline-block ml-3"> Read full post</small>
+                  <small className="d-inline-block ml-3"> Read full report</small>
                 </Link>
                 <div className="d-block">
                   {getTechTags(tags)}
                 </div>
               </div>
-            );
+            )
           })}
-          {hasNextPage &&
-          <div className="mt-4 text-center">
-            <Link to={nextPage} rel="next" style={{ textDecoration: `none` }}>
-              <span className="text-dark">Next Page →</span>
-            </Link>
-          </div>
-          }
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export const pageQuery = graphql`
-    query IndexQuery {
+    query ProjectsQuery {
         site {
             siteMetadata {
                 title
@@ -92,7 +83,7 @@ export const pageQuery = graphql`
             }
         }
         allMarkdownRemark(
-            limit: 3
+            limit: 1000
             sort: { fields: [frontmatter___date], order: DESC }
             filter: { frontmatter: { published: { eq: true } } }
         ) {
@@ -116,5 +107,5 @@ export const pageQuery = graphql`
     }
 `
 
-export default IndexPage
+export default ProjectsPage
 

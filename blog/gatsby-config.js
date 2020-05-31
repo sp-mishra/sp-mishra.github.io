@@ -1,13 +1,13 @@
-'use strict'
+'use strict';
 
-const siteConfig = require("./config")
+const siteConfig = require("./config");
 
 module.exports = {
   siteMetadata: {
     url: siteConfig.url,
     title: siteConfig.title,
     tagline: siteConfig.tagline,
-    description: `A blog template for web developers that's ready to go out of the box. Feel free to modify it to your liking.`,
+    description: `BrainlessLabs Diary`,
     author: siteConfig.author.name,
     contacts: {
       linkedin: siteConfig.author.contacts.linkedin,
@@ -25,8 +25,15 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/posts`,
+        path: `${__dirname}/posts/blogs`,
         name: `blog`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/posts/projects`,
+        name: `project`,
       },
     },
     {
@@ -76,7 +83,8 @@ module.exports = {
       options: {
         name: `gatsby-starter-default`,
         short_name: `starter`,
-        start_url: `/`,
+        // start_url: `/`,
+        start_url: `https://sp-mishra.github.io/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,

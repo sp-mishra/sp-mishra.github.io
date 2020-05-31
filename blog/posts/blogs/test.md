@@ -1,6 +1,6 @@
 ---
 title: 'Hello World'
-tags: ["react", "vscode", "git", "css", "python", "java", "html", "mongodb", "graphql", "gatsby", "cpp" ]
+tags: ["react", "vscode", "git", "css", "python", "java", "html", "mongodb", "graphql", "gatsby", "cpp", "machinelearning", "math", "games",]
 published: true
 date: '2020-05-23'
 ---

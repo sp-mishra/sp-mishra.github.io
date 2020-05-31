@@ -1,14 +1,15 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import "./blog-post.css"
-
-import Sidebar from "../components/sidebar/Sidebar"
-import TechTag from "../components/tags/TechTag"
-import CustomShareBlock from "../components/CustomShareBlock"
+import React from "react";
+import { graphql } from "gatsby";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import "./blog-post.css";
+import Sidebar from "../components/sidebar/Sidebar";
+import TechTag from "../components/tags/TechTag";
+import MarkdownElement from "../components/MarkdownElement";
+import CustomShareBlock from "../components/CustomShareBlock";
 
 const BlogPost = (props) => {
+  console.log(BlogPost.name, "\n Props: ", props)
   const post = props.data.markdownRemark
   const labels = props.data.site.siteMetadata.labels
   const siteName = props.data.site.siteMetadata.title
@@ -46,7 +47,9 @@ const BlogPost = (props) => {
             </div>
             <br/>
             <small><i>Published on </i> {post.frontmatter.date}</small>
-            <div dangerouslySetInnerHTML={{ __html: post.html }}/>
+            {/*<div dangerouslySetInnerHTML={{ __html: md.render(post.html) }}/>*/}
+            {/*<div dangerouslySetInnerHTML={{__html: md.render(post.html)}}/>*/}
+            <MarkdownElement text={post.html}/>
             <CustomShareBlock title={post.frontmatter.title} siteName={siteName} url={url}/>
           </div>
         </div>

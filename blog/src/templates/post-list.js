@@ -1,33 +1,34 @@
-import React from "react"
-import { graphql, Link } from "gatsby"
-import "bootstrap/dist/css/bootstrap.css"
-import "../pages/index.css"
+import React from "react";
+import { graphql, Link } from "gatsby";
+import "bootstrap/dist/css/bootstrap.css";
+import "../pages/index.css";
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Sidebar from "../components/sidebar/Sidebar"
-import TechTag from "../components/tags/TechTag"
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import Sidebar from "../components/sidebar/Sidebar";
+import TechTag from "../components/tags/TechTag";
 
 const PostList = (props) => {
-  const posts = props.data.allMarkdownRemark.edges
-  const labels = props.data.site.siteMetadata.labels
-  const { currentPage, numPages } = props.pageContext
-  const isFirst = currentPage === 1
-  const isLast = currentPage === numPages
-  const prevPage = currentPage - 1 === 1 ? "/" : (currentPage - 1).toString()
-  const nextPage = (currentPage + 1).toString()
+  console.log(PostList.name, "\n Props: ", props);
+  const posts = props.data.allMarkdownRemark.edges;
+  const labels = props.data.site.siteMetadata.labels;
+  const { currentPage, numPages } = props.pageContext;
+  const isFirst = currentPage === 1;
+  const isLast = currentPage === numPages;
+  const prevPage = currentPage - 1 === 1 ? "/" : (currentPage - 1).toString();
+  const nextPage = (currentPage + 1).toString();
 
   const getTechTags = (tags) => {
-    const techTags = []
+    const techTags = [];
     tags.forEach((tag, i) => {
       labels.forEach((label) => {
         if (tag === label.tag) {
           techTags.push(<TechTag key={i} tag={label.tag} tech={label.tech} name={label.name} size={label.size}
-                                 color={label.color}/>)
+                                 color={label.color}/>);
         }
-      })
-    })
-    return techTags
+      });
+    });
+    return techTags;
   }
 
 
@@ -40,7 +41,7 @@ const PostList = (props) => {
         </div>
         <div className="post-list-main">
           {posts.map((post) => {
-            const tags = post.node.frontmatter.tags
+            const tags = post.node.frontmatter.tags;
             return (
               <div key={post.node.id} className="container mt-5">
                 <Link
@@ -62,7 +63,7 @@ const PostList = (props) => {
                   {getTechTags(tags)}
                 </div>
               </div>
-            )
+            );
           })}
           <div className="text-center mt-4">
             {!isFirst && (
@@ -79,7 +80,7 @@ const PostList = (props) => {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export const listQuery = graphql`
@@ -123,4 +124,4 @@ export const listQuery = graphql`
     }
 `
 
-export default PostList
+export default PostList;

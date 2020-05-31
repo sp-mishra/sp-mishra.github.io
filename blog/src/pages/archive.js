@@ -9,20 +9,21 @@ import Sidebar from "../components/sidebar/Sidebar"
 import TechTag from "../components/tags/TechTag"
 
 const ArchivePage = ({ data }) => {
-  const posts = data.allMarkdownRemark.edges
-  const labels = data.site.siteMetadata.labels
+  console.log(ArchivePage.name, "\n data: ", data);
+  const posts = data.allMarkdownRemark.edges;
+  const labels = data.site.siteMetadata.labels;
 
   const getTechTags = (tags) => {
-    const techTags = []
+    const techTags = [];
     tags.forEach((tag, i) => {
       labels.forEach((label) => {
         if (tag === label.tag) {
           techTags.push(<TechTag key={i} tag={label.tag} tech={label.tech} name={label.name} size={label.size}
-                                 color={label.color}/>)
+                                 color={label.color}/>);
         }
-      })
-    })
-    return techTags
+      });
+    });
+    return techTags;
   }
 
 
@@ -36,7 +37,7 @@ const ArchivePage = ({ data }) => {
         <div className="post-list-main">
           <h2 className="heading mt-3">All Posts</h2>
           {posts.map((post) => {
-            const tags = post.node.frontmatter.tags
+            const tags = post.node.frontmatter.tags;
             return (
               <div key={post.node.id} className="container mt-5">
                 <Link
@@ -63,7 +64,7 @@ const ArchivePage = ({ data }) => {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export const pageQuery = graphql`

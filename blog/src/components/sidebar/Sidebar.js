@@ -54,9 +54,26 @@ const Sidebar = () => {
             <Bio author={data.site.siteMetadata.author} tagline={data.site.siteMetadata.tagline}/>
             <SocialLinks contacts={data.site.siteMetadata.contacts}/>
             <div className="page-links">
-              <Link to="/"><span className="text-dark d-block py-1">Blog Home</span></Link>
-              <Link to="/about"><span className="text-dark d-block py-1">About</span></Link>
-              <Link to="/archive"><span className="text-dark d-block py-1">Archive</span></Link>
+              <Link to="/"
+                    replace
+                    activeStyle={{ textDecoration: "salmon double underline" }}>
+                <span className="text-dark d-block py-1">Blog Home</span>
+              </Link>
+              <Link to="/about"
+                    replace
+                    activeStyle={{ textDecoration: "salmon double underline" }}>
+                <span className="text-dark d-block py-1">About</span>
+              </Link>
+              <Link to="/archive"
+                    replace
+                    activeStyle={{ textDecoration: "salmon double underline" }}>
+                <span className="text-dark d-block py-1">Archive</span>
+              </Link>
+              <Link to="/projects"
+                    replace
+                    activeStyle={{ textDecoration: "salmon double underline" }}>
+                <span className="text-dark d-block py-1">Projects</span>
+              </Link>
             </div>
             <div className="tech-tags mt-4">
               <TechTags labels={data.site.siteMetadata.labels} posts={data.allMarkdownRemark.edges}/>
